@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 200.0f;
     private Animator anim;
     public float x, y;
+    public int CoinsCollected = 0;
+    public GameObject PuertaAbierta;
+    public GameObject PuertaCerrada;
 
     void Start()
     {
@@ -16,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        OpenDoor();
+
         x = Input.GetAxis("Horizontal");
         y= Input.GetAxis("Vertical");
 
@@ -25,5 +30,27 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
+    }
+
+    private void OnTriggerEnter(Collider col) 
+    {
+        if(col.transform.gameObject.tag == "Coin")
+        {
+            CoinsCollected++;
+            Destroy(col.transform.gameObject);
+        }
+    }
+
+    void OpenDoor()
+    {
+        if(CoinsCollected == 10)
+        {
+            PuertaAbierta.SetActive(true);
+            PuertaCerrada.SetActive(false);
+        } else 
+        {
+            PuertaAbierta.SetActive(false);
+            PuertaCerrada.SetActive(true);
+        }
     }
 }
