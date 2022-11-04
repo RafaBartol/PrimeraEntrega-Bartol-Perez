@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OpenDoor()
     {
-        if(CoinsCollected == 10)
+        if(CoinsCollected == 22)
         {
             PuertaAbierta.SetActive(true);
             PuertaCerrada.SetActive(false);
