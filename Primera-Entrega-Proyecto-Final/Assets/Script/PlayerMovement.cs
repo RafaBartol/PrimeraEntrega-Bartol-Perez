@@ -11,15 +11,20 @@ public class PlayerMovement : MonoBehaviour
     public int CoinsCollected = 0;
     public GameObject PuertaAbierta;
     public GameObject PuertaCerrada;
+    public float timeLeft;
+    public float resetTime;
+    Vector3 posInicial;
 
     void Start()
     {
+        posInicial = transform.position;
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         OpenDoor();
+        GameTime();
 
         x = Input.GetAxis("Horizontal");
         y= Input.GetAxis("Vertical");
@@ -53,4 +58,21 @@ public class PlayerMovement : MonoBehaviour
             PuertaCerrada.SetActive(true);
         }
     }
+
+    void GameTime()
+    {
+        timeLeft -= Time.deltaTime;
+        if(timeLeft <= 0)
+        {
+            Debug.Log("Has Perdido");
+            Respawn();
+            timeLeft = resetTime;
+        }
+    }
+
+    void Respawn()
+    {
+        transform.position = posInicial;
+    }
+
 }
