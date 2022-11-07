@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         } else if (col.transform.gameObject.tag == "Salida")
         {
             Respawn();
+            timeLeft = resetTime;
             Debug.Log("Has Ganado");
         }
     }
