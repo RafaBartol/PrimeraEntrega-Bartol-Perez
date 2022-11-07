@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
         {
             CoinsCollected++;
             Destroy(col.transform.gameObject);
+        } else if (col.transform.gameObject.tag == "Salida")
+        {
+            Respawn();
+            Debug.Log("Has Ganado");
         }
     }
 
