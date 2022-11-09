@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         OpenDoor();
-        GameTime();
+        GameTime(); 
 
         x = Input.GetAxis("Horizontal");
         y= Input.GetAxis("Vertical");
@@ -37,13 +37,13 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("VelY", y);
     }
 
-    private void OnTriggerEnter(Collider col) 
+    private void OnTriggerEnter(Collider col)
     {
         if(col.transform.gameObject.tag == "Coin")
         {
             CoinsCollected++;
             Destroy(col.transform.gameObject);
-        } else if (col.transform.gameObject.tag == "Salida")
+        } else if(col.transform.gameObject.tag == "Salida")
         {
             Respawn();
             timeLeft = resetTime;
